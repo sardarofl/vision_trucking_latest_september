@@ -532,14 +532,14 @@ exports.FecategoriesComponent = FecategoriesComponent;
 /***/ "./src/app/components/fegallery/fegallery.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".floating_button{\r\n\r\n    background-color: black;\r\n    position:fixed;  \r\n    z-index:3;\r\n    top:30px;\r\n    right:30px;\r\n}\r\n\r\n.checkbox_text{\r\n    font-size: 3rem;\r\n}\r\n\r\n.modal-content{\r\n    background-color: #232F3F;\r\n    color:whitesmoke;\r\n}\r\n\r\n.grid_container{\r\n\r\n    background-color: #232F3F;\r\n    display: -ms-grid;\r\n    display: grid;\r\n    -ms-grid-columns: auto auto;\r\n        grid-template-columns: auto auto;\r\n    -ms-grid-rows: auto auto;\r\n        grid-template-rows: auto auto;\r\n   \r\n}\r\n\r\n.grid_images_checkboxes{\r\n    background-color:#232F3F;\r\n    overflow-y: scroll; height:672px;\r\n}\r\n\r\n.email_entry{\r\n    background-color:whitesmoke;\r\n}\r\n\r\n.modal_buttons{\r\n    text-align: center;\r\n}\r\n\r\n.spacer{\r\n        -webkit-box-flex:1;\r\n            -ms-flex:1 1 auto;\r\n                flex:1 1 auto;\r\n}\r\n\r\n.modal{\r\n    width:85%;\r\n}"
+module.exports = ".floating_button{\r\n\r\n    background-color: black;\r\n    position:fixed;  \r\n    z-index:3;\r\n    top:30px;\r\n    right:30px;\r\n}\r\n\r\n.back_button_style{\r\n    position:fixed;  z-index:3; width:50px; top:20px; left:20px; height:50px;\r\n  }\r\n\r\n.checkbox_text{\r\n    font-size: 3rem;\r\n}\r\n\r\n.modal-content{\r\n    background-color: #232F3F;\r\n    color:whitesmoke;\r\n}\r\n\r\n.grid_container{\r\n\r\n    background-color: #232F3F;\r\n    display: -ms-grid;\r\n    display: grid;\r\n    -ms-grid-columns: auto auto;\r\n        grid-template-columns: auto auto;\r\n    -ms-grid-rows: auto auto;\r\n        grid-template-rows: auto auto;\r\n   \r\n}\r\n\r\n.grid_images_checkboxes{\r\n    background-color:#232F3F;\r\n    overflow-y: scroll; height:672px;\r\n}\r\n\r\n.email_entry{\r\n    background-color:whitesmoke;\r\n}\r\n\r\n.modal_buttons{\r\n    text-align: center;\r\n}\r\n\r\n.spacer{\r\n        -webkit-box-flex:1;\r\n            -ms-flex:1 1 auto;\r\n                flex:1 1 auto;\r\n}\r\n\r\n.modal{\r\n    width:85%;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/components/fegallery/fegallery.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div *ngFor=\"let item of gallery\" class=\"col s4\">\n  <div  class=\"card\" style=\"width:90%; font-size:2.3em;\">\n    <div class=\"card-image\">\n      <img src=\"/uploads/{{item.image_path}}\">\n    </div>\n    <div style=\"text-align: center;\" class=\"card-content\">\n      <p>{{item.product_name}}</p>\n    </div>\n  </div>\n</div> -->\n\n<a routerLink='/visiontrucking/feproducts/{{this.id_url}}/{{this.category_url}}'  routerLinkActive=\"active\" class=\"\"  id=\"\"style=\"position:fixed;  z-index:3; width:50px; margin-left: -230px; margin-top:-430px; height:50px;\"><img style=\"margin-left:0px;\" class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n\n\n<div id=\"gallery\" style=\"display:none; z-index: 3;margin-top:100px; width:100%;\">\n\n\t<!--<div data-type=\"youtube\"\n\t\t\t\t\t\t data-videoid=\"A3PDXmYoF5U\"\n\t\t\t\t\t\t data-title=\"GoPro Demo\"\n\t\t\t\t\t\t data-description=\"by Go Pro\"></div>-->\n\n <!-- <img  *ngFor=\"let item of gallery\" alt=\"{{item.title}}\" src=\"/uploads/{{item.src}}\" data-description=\"item.description\"> -->\n<!--\n <img *ngFor=\"let item of gallery\" alt=\"Image 1 Title\" src=\"assets/page-home-1.jpg\"\n   data-image=\"assets/page-home-1.jpg\"\n   data-description=\"Image 1 Description\"> -->\n\n\n\n </div>\n\n \n \n\n\n\n   <!-- Modal Trigger -->\n   <a class=\"floating_button waves-effect waves-light btn modal-trigger\" href=\"#modal1\">Email to MySelf</a>\n   <!-- <h4 class=\"floating_button\" id=\"room_checkboxes\"  >\n      <input type=\"checkbox\" id=\"aasdd\" value=asca checked=\"checked\" />\n      <label class=\"checkbox_text\" id=\"asca\" for=\"awdaw\">awdwda</label>\n    </h4> -->\n   \n   <!-- Modal Structure -->\n   <div id=\"modal1\" class=\"modal\">\n     <div class=\"modal-content\">\n        \n       <h3>Select from below items to email to yourself</h3>\n       <div class=\"grid_container\">\n         <div class=\"grid_item grid_images_checkboxes\"> \n            <div *ngFor=\"let item of this.gallery; let i=index;\"><mat-checkbox   [checked]=\"item.isChecked\" (change)=\"onChkChange(item.src,i,item)\"><img src='/uploads/{{item.src}}' style=\"max-width: 100%; max-height: 278px;\"></mat-checkbox><br></div>\n         </div>\n         <div class=\"grid_item email_grid\">\n      \n                <br><br>\n                <input placeholder=\"Enter your email\" id=\"email_field\" type=\"text\" class=\"validate email_entry\"  style=\"font-size: 1.6rem\" ng-virtual-keyboard><br>\n                <div id=\"keyboard\"></div>\n                <br><br>\n                <div class=\"modal_buttons\">\n                  <a style=\"font-size: 1.6rem\" class=\"modal-close waves-effect teal darken-2 white-text btn-flat \" (click)=\"sendEmail();\">Send</a>\n                  &nbsp;\n                  <a style=\"font-size: 1.6rem\"class=\"modal-close waves-effect pink darken-1 white-text btn-flat \">Cancel</a>\n                  <br>\n                  <p>Please note that, your email provider may filter our email due to large file sizes.</p>\n\n                </div>\n               \n              </div>\n\n          </div>\n          <div class=\"grid_item\"><div class=\"input-field\"></div>\n       </div>\n       \n      \n       <!-- <mat-checkbox [checked]=\"isChecked\" value=\"image 2\" (change)=\"onChkChange()\">image 2</mat-checkbox>\n       <mat-checkbox [checked]=\"isChecked\" value=\"image 3\" (change)=\"onChkChange()\">image 3</mat-checkbox> -->\n       <!-- <p id=\"room_checkboxes\"  >\"\n        <input type=\"checkbox\" id=\"not_real\" value=note checked=\"checked\">\n        <span id=\"label_note\" for=\"note\">remmk</span>\n      </p> -->\n\n     </div>\n     <div class=\"modal-footer\">\n       \n     </div>\n   </div>"
+module.exports = "<!-- <div *ngFor=\"let item of gallery\" class=\"col s4\">\n  <div  class=\"card\" style=\"width:90%; font-size:2.3em;\">\n    <div class=\"card-image\">\n      <img src=\"/uploads/{{item.image_path}}\">\n    </div>\n    <div style=\"text-align: center;\" class=\"card-content\">\n      <p>{{item.product_name}}</p>\n    </div>\n  </div>\n</div> -->\n\n<a routerLink='/visiontrucking/feproducts/{{this.id_url}}/{{this.category_url}}'  routerLinkActive=\"active\" class=\"back_button_style backbutton_fromgallery\"  id=\"\"style=\"\"><img style=\"margin-left:0px;\" class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n\n\n<div id=\"gallery\" style=\"display:none; z-index: 3;margin-top:100px; width:100%;\">\n\n\t<!--<div data-type=\"youtube\"\n\t\t\t\t\t\t data-videoid=\"A3PDXmYoF5U\"\n\t\t\t\t\t\t data-title=\"GoPro Demo\"\n\t\t\t\t\t\t data-description=\"by Go Pro\"></div>-->\n\n <!-- <img  *ngFor=\"let item of gallery\" alt=\"{{item.title}}\" src=\"/uploads/{{item.src}}\" data-description=\"item.description\"> -->\n<!--\n <img *ngFor=\"let item of gallery\" alt=\"Image 1 Title\" src=\"assets/page-home-1.jpg\"\n   data-image=\"assets/page-home-1.jpg\"\n   data-description=\"Image 1 Description\"> -->\n\n\n\n </div>\n\n \n \n\n\n\n   <!-- Modal Trigger -->\n   <a class=\"floating_button waves-effect waves-light btn modal-trigger\" href=\"#modal1\">Email to MySelf</a>\n   <!-- <h4 class=\"floating_button\" id=\"room_checkboxes\"  >\n      <input type=\"checkbox\" id=\"aasdd\" value=asca checked=\"checked\" />\n      <label class=\"checkbox_text\" id=\"asca\" for=\"awdaw\">awdwda</label>\n    </h4> -->\n   \n   <!-- Modal Structure -->\n   <div id=\"modal1\" class=\"modal\">\n     <div class=\"modal-content\">\n        \n       <h3>Select from below items to email to yourself</h3>\n       <div class=\"grid_container\">\n         <div class=\"grid_item grid_images_checkboxes\"> \n            <div *ngFor=\"let item of this.gallery; let i=index;\"><mat-checkbox   [checked]=\"item.isChecked\" (change)=\"onChkChange(item.src,i,item)\"><img src='/uploads/{{item.src}}' style=\"max-width: 100%; max-height: 278px;\"></mat-checkbox><br></div>\n         </div>\n         <div class=\"grid_item email_grid\">\n      \n                <br><br>\n                <input placeholder=\"Enter your email\" id=\"email_field\" type=\"text\" class=\"validate email_entry\"  style=\"font-size: 1.6rem\" ng-virtual-keyboard><br>\n                <div id=\"keyboard\"></div>\n                <br><br>\n                <div class=\"modal_buttons\">\n                  <a style=\"font-size: 1.6rem\" class=\"modal-close waves-effect teal darken-2 white-text btn-flat \" (click)=\"sendEmail();\">Send</a>\n                  &nbsp;\n                  <a style=\"font-size: 1.6rem\"class=\"modal-close waves-effect pink darken-1 white-text btn-flat \">Cancel</a>\n                  <br>\n                  <p>Please note that, your email provider may filter our email due to large file sizes.</p>\n\n                </div>\n               \n              </div>\n\n          </div>\n          <div class=\"grid_item\"><div class=\"input-field\"></div>\n       </div>\n       \n      \n       <!-- <mat-checkbox [checked]=\"isChecked\" value=\"image 2\" (change)=\"onChkChange()\">image 2</mat-checkbox>\n       <mat-checkbox [checked]=\"isChecked\" value=\"image 3\" (change)=\"onChkChange()\">image 3</mat-checkbox> -->\n       <!-- <p id=\"room_checkboxes\"  >\"\n        <input type=\"checkbox\" id=\"not_real\" value=note checked=\"checked\">\n        <span id=\"label_note\" for=\"note\">remmk</span>\n      </p> -->\n\n     </div>\n     <div class=\"modal-footer\">\n       \n     </div>\n   </div>"
 
 /***/ }),
 
@@ -618,6 +618,10 @@ var FegalleryComponent = /** @class */ (function () {
     };
     FegalleryComponent.prototype.ngOnInit = function () {
         var _this = this;
+        $(".head-image").hide();
+        $(".backbutton_fromgallery").on('click', function () {
+            $(".head-image").show();
+        });
         $(document).ready(function () {
             $('.modal').modal();
         });
@@ -734,7 +738,7 @@ module.exports = "\r\n.head-image{\r\n    display: block;\r\n    margin-left: au
 /***/ "./src/app/components/femain/femain.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<head>\n  </head>\n <div class=\"video_fullscreen\">\n   <div class=\"video_overlay\">\n   <p style=\"margin-top:10px;\">\n     Touch the screen to explore more!\n   </p>\n   </div>\n   <video id=\"myVideo\" loop autoplay muted>\n      <source  src=\"assets/video2.mp4\" type=\"video/mp4\">\n      Your browser does not support the video tag.\n    </video>\n </div>\n <body class=\"resetCounter\">\n \n \n <div class=\"bottom_indicator\" style=\"position:fixed; z-index:3;  position: fixed; bottom: 1.6em; left:90%; width: 100%;\"><img class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/bottom-arrow.png\" width=\"100\" height=\"100\"></div>\n \n <div style=\"position:fixed; width:100%; height:100%;margin-top: 0px; z-index:-2; background-image:url('assets/page-home-1.jpg');\" class=\"background-image\">\n   </div>\n   <div class=\"container\">\n     <br><br>\n   <div class=\"row\">\n <img class=\"head-image\"style=\"\" src=\"assets/Vision Truck Group Marketing - Logo Png.png\" alt=\"Avatar\">\n </div>\n <div class=\"row\">\n    <router-outlet></router-outlet>\n     </div>\n     \n </div>\n </body>\n"
+module.exports = "<head>\n  </head>\n <!-- <div class=\"video_fullscreen\">\n   <div class=\"video_overlay\">\n   <p style=\"margin-top:10px;\">\n     Touch the screen to explore more!\n   </p>\n   </div>\n   <video id=\"myVideo\" loop autoplay muted>\n      <source  src=\"assets/video2.mp4\" type=\"video/mp4\">\n      Your browser does not support the video tag.\n    </video>\n </div> -->\n <body class=\"resetCounter\">\n \n \n <!-- <div class=\"bottom_indicator\" style=\"position:fixed; z-index:3;  position: fixed; bottom: 1.6em; left:90%; width: 100%;\"><img class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/bottom-arrow.png\" width=\"100\" height=\"100\"></div> -->\n \n <div style=\"position:fixed; width:100%; height:100%;margin-top: 0px; z-index:-2; background-image:url('assets/hgcbackground.jpg');\" class=\"background-image\">\n   </div>\n   <div class=\"container\">\n     <br><br>\n   <div class=\"row\">\n <img class=\"head-image\"style=\"\" src=\"assets/i_logo2.png\" alt=\"Avatar\">\n </div>\n <div class=\"row\">\n    <router-outlet></router-outlet>\n     </div>\n     \n </div>\n </body>\n"
 
 /***/ }),
 
@@ -762,9 +766,9 @@ var FemainComponent = /** @class */ (function () {
     }
     FemainComponent.prototype.ngOnInit = function () {
         var myclock;
-        myclock = setInterval(function () {
-            $(".video_fullscreen").show();
-        }, 300000);
+        // myclock = setInterval(() => {
+        //     $(".video_fullscreen").show();
+        //      }, 300000);
         $(window).scroll(function () {
             if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                 $(".bottom_indicator").hide();
@@ -777,16 +781,16 @@ var FemainComponent = /** @class */ (function () {
             $("html, body").animate({ scrollTop: $(document).height() }, "slow");
             //this.router.navigateByUrl('/');
         });
-        $(".resetCounter").on('click', function () {
-            clearTimeout(myclock);
-            myclock = setInterval(function () {
-                $(".video_fullscreen").show();
-            }, 300000);
-        });
-        $(".video_fullscreen").on('click', function () {
-            //this.router.navigate(['']);
-            $(".video_fullscreen").hide();
-        });
+        //  $(".resetCounter").on('click',() => {
+        //    clearTimeout(myclock);
+        //    myclock = setInterval(() => {
+        //        $(".video_fullscreen").show();
+        //         }, 300000);
+        //   } );
+        //   $(".video_fullscreen").on('click',() => {
+        //     //this.router.navigate(['']);
+        //      $(".video_fullscreen").hide();
+        //    } );
     };
     FemainComponent = __decorate([
         core_1.Component({
@@ -856,14 +860,14 @@ exports.FemediaComponent = FemediaComponent;
 /***/ "./src/app/components/feproducts/feproducts.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\r\n.back_button_style{\r\n    position:fixed;  z-index:3; width:50px; top:20px; left:20px; height:50px;\r\n}\r\n\r\n"
 
 /***/ }),
 
 /***/ "./src/app/components/feproducts/feproducts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<a routerLink='/visiontrucking/fecatetgory'  routerLinkActive=\"active\" class=\"\"  id=\"\"style=\"position:fixed;  z-index:3; width:50px; margin-left: -230px; margin-top:-360px; height:50px;\"><img style=\"margin-left:0px;\" class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n<div [@fadeIn]=\"''\" *ngFor=\"let item of product\" class=\"col s4\">\n  <div routerLink='/visiontrucking/fegallery/{{item._id}}/{{item.product_name}}/{{category_url}}' routerLinkActive=\"active\" class=\"card\" style=\"width:90%; font-size:2.3em;\">\n    <div class=\"card-image\">\n      <img src=\"/uploads/{{item.image_path}}\">\n    </div>\n    <div style=\"text-align: center;\" class=\"card-content\">\n      <p>{{item.product_name}}</p>\n    </div>\n  </div>\n</div>\n"
+module.exports = "\n<a routerLink='/visiontrucking/fecatetgory'  routerLinkActive=\"active\" class=\"back_button_style\"  id=\"\"style=\"\"><img style=\"margin-left:0px;\" class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n<div [@fadeIn]=\"''\" *ngFor=\"let item of product\" class=\"col s4\">\n  <div routerLink='/visiontrucking/fegallery/{{item._id}}/{{item.product_name}}/{{category_url}}' routerLinkActive=\"active\" class=\"card\" style=\"width:90%; font-size:2.3em;\">\n    <div class=\"card-image\">\n      <img src=\"/uploads/{{item.image_path}}\">\n    </div>\n    <div style=\"text-align: center;\" class=\"card-content\">\n      <p>{{item.product_name}}</p>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -941,14 +945,14 @@ exports.FeproductsComponent = FeproductsComponent;
 /***/ "./src/app/components/fewebsite/fewebsite.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".buildyourmack_iframe{\r\n\r\n  z-index:3;\r\n}\r\n"
+module.exports = ".buildyourmack_iframe{\r\n\r\n  z-index:3;\r\n}\r\n\r\n.back_button_style{\r\n  position:fixed;  z-index:3; width:50px; top:20px; left:20px; height:50px;\r\n}\r\n\r\n"
 
 /***/ }),
 
 /***/ "./src/app/components/fewebsite/fewebsite.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a routerLink='/visiontrucking/fecatetgory'  routerLinkActive=\"active\" class=\"backbutton_fromwebsite\"  id=\"\"style=\"position:fixed;  z-index:3; width:50px; margin-left: -230px; margin-top:-30px; height:50px;\"><img style=\"margin-left:0px;\" class=\"back_button\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n\n<div *ngFor=\"let item of website\" class=\"buildyourmack_iframe\">\n\n  <iframe class=\"\" width=\"100%\" height=\"1080px\" [src]=\"item.Website | safe\"></iframe>\n</div>\n"
+module.exports = "<a routerLink='/visiontrucking/fecatetgory'  routerLinkActive=\"active\" class=\"back_button_style\"  id=\"\"style=\"\"><img style=\"margin-left:0px;\" class=\"backbutton_fromwebsite\" border=\"0\" alt=\"W3Schools\" src=\"assets/left-arrow (1).png\" width=\"100\" height=\"100\"></a>\n\n<div *ngFor=\"let item of website\" class=\"buildyourmack_iframe\">\n\n  <iframe class=\"\" width=\"100%\" height=\"1080px\" [src]=\"item.Website | safe\"></iframe>\n</div>\n"
 
 /***/ }),
 

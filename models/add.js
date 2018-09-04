@@ -120,7 +120,7 @@ const Add_Items={
       file_path:req.file.originalname,
       filename_path:req.file.filename
     });
-
+    console.log(req);
       newCategory.save( callback, function (err, docs) {
         if (err){
             return console.error(err);
